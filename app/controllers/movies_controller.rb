@@ -23,8 +23,6 @@ class MoviesController < ApplicationController
         end
       end
           
-          
-    
     end
   
     def new
