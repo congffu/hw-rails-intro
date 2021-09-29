@@ -7,7 +7,7 @@ class Movie < ActiveRecord::Base
         if list.empty?
             Movie.all
         else
-            list = list.maps {|rating| rating.upcase}
+            list = list.map {|rating| rating.upcase}
             Movie.where(rating: list)
         end
         
