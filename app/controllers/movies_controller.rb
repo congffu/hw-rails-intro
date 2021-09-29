@@ -11,9 +11,9 @@ class MoviesController < ApplicationController
       
       if params[:sort_by]
         @movies = @movies.order(params[:sort_by])
-        if params[:sort_by] == title
+        if params[:sort_by] == 'title'
           @title_header = 'hilite bg-warning'
-        elsif params[:sort_by] == title
+        elsif params[:sort_by] == 'release_date'
           @release_date_header = 'hilite bg-warning'
         end
       end
