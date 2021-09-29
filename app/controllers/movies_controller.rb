@@ -21,17 +21,17 @@ class MoviesController < ApplicationController
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
       
       
-      @sort_by = params[:sort_by]? params[:sort_by]:''
+
       
       if params[:sort_by]
         
         @movies = @movies.order(params[:sort_by])
-        # if params[:sort_by] == 'title'
-        #   @title_header = 'hilite bg-warning'
-        # elsif params[:sort_by] == 'release_date'
-        #   @release_date_header = 'hilite bg-warning'
-        # end
-        redirect_to movies_path(:sort_by => params[:sort_by], :ratings => @rating_hash)
+        if params[:sort_by] == 'title'
+          @title_header = 'hilite bg-warning'
+        elsif params[:sort_by] == 'release_date'
+          @release_date_header = 'hilite bg-warning'
+        end
+  
       end
           
     end
