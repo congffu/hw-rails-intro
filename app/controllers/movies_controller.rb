@@ -43,6 +43,7 @@ class MoviesController < ApplicationController
         session[:sort_by] = @sort
       end
         
+      flash.keep
       if @sort
         @movies = @movies.order(@sort)
         if @sort == 'title'
