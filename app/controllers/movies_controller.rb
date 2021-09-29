@@ -20,8 +20,11 @@ class MoviesController < ApplicationController
       @movies = Movie.with_ratings(@rating_list)
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
       
+      
+      @sort_by = params[:sort_by]? params[:sort_by]:''
+      
       if params[:sort_by]
-        @sort_by = params[:sort_by]
+        
         @movies = @movies.order(params[:sort_by])
         # if params[:sort_by] == 'title'
         #   @title_header = 'hilite bg-warning'
