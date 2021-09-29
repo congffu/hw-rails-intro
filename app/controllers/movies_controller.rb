@@ -44,13 +44,20 @@ class MoviesController < ApplicationController
       end
         
       if @sort
-        @movies = @movies.order(params[:sort_by])
-        if params[:sort_by] == 'title'
+        @movies = @movies.order(@sort)
+        if @sort == 'title'
           @title_header = 'hilite bg-warning'
-        elsif params[:sort_by] == 'release_date'
+        elsif @sort == 'release_date'
           @release_date_header = 'hilite bg-warning'
         end
       end
+      
+      # @movies = @movies.order(params[:sort_by])
+      # if params[:sort_by] == 'title'
+      #   @title_header = 'hilite bg-warning'
+      # elsif params[:sort_by] == 'release_date'
+      #   @release_date_header = 'hilite bg-warning'
+      # end
           
     end
   
