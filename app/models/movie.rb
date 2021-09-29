@@ -1,7 +1,8 @@
 class Movie < ActiveRecord::Base
     def self.all_ratings
-        # self.all.select(:rating).distinct.pluck(:rating)
-        Movie.select(:rating).distinct.inject([]) { |a, m| a.push m.rating }
+        # Movie.all.select(:rating).distinct.pluck(:rating)
+        ['G','PG','PG-13','R']
+        # Movie.select(:rating).distinct.inject([]) { |a, m| a.push m.rating }
     end
     
     def self.with_ratings(list)
