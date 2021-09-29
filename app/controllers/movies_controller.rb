@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
     end
   
     def index
-      session.clear
+      # session.clear
       @movies = Movie.all
       
       @all_ratings = Movie.all_ratings
@@ -32,12 +32,10 @@ class MoviesController < ApplicationController
       
       if params[:sort_by]
         @sort = params[:sort_by]
+      elsif session[:sort_by]
+        @sort = session[:sort_by]
       else
-        if session[:sort_by]
-          @sort = session[:sort_by]
-        else
-          @sort = ''
-        end
+        @sort = ''
       end
         
       if @sort != session[:sort_by]
