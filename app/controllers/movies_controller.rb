@@ -27,7 +27,7 @@ class MoviesController < ApplicationController
         # elsif params[:sort_by] == 'release_date'
         #   @release_date_header = 'hilite bg-warning'
         # end
-        redirect_to movies_path(:sort_by: params[:sort_by], :ratings:params[:ratings])
+        redirect_to movies_path(:sort_by => params[:sort_by], :ratings => params[:ratings])
       end
           
     end
