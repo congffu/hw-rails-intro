@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
         @rating_list = params[:rating].keys
       else
         @rating_list = @all_ratings
-      
+      end
       
       @movies = Movie.with_ratings(@rating_list)
       @rating_hash = Hash[@ratings_to_show.map {|rating| [rating, '1']}]
