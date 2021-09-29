@@ -9,6 +9,11 @@ class MoviesController < ApplicationController
     def index
       @movies = Movie.all
       
+      @all_ratings = Movie.all_ratings
+      
+      @rating_list = params[:rating].keys
+      @movies = Movie.with_ratings(@rating_list)
+      
       if params[:sort_by]
         @movies = @movies.order(params[:sort_by])
         if params[:sort_by] == 'title'
