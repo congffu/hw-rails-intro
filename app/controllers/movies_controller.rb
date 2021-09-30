@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   
     def index
       # session.clear
-      # @movies = Movie.all
+      @movies = Movie.all
       
       @all_ratings = Movie.all_ratings
       
@@ -24,9 +24,9 @@ class MoviesController < ApplicationController
         end
       end
       
-      # if @rating_list != session[:ratings]
-      #   session[:ratings] = @rating_list
-      # end
+      if @rating_list != session[:ratings]
+        session[:ratings] = @rating_list
+      end
       
       @movies = Movie.with_ratings(@rating_list)
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
@@ -41,9 +41,9 @@ class MoviesController < ApplicationController
         @sort = ''
       end
         
-      # if @sort != session[:sort]
-      #   session[:sort] = @sort
-      # end
+      if @sort != session[:sort]
+        session[:sort] = @sort
+      end
         
       # flash.keep
       if @sort
