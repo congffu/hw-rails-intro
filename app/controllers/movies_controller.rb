@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
         @rating_list = session[:ratings]
       else
         @rating_list = @all_ratings
-        @rating_list = Hash[@rating_list.map {|rating| [rating, '1']}]
+        @rating_list = Hash[@rating_list.map {|rating| [rating, rating]}]
       end
       
       session[:ratings] = @rating_list
