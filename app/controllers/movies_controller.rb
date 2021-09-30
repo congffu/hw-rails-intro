@@ -44,14 +44,16 @@ class MoviesController < ApplicationController
         elsif @sort == 'release_date'
           @release_date_header = 'hilite bg-warning'
         end
+        
+        if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
+          session[:sort] = @sort
+          session[:ratings] = @rating_list
+          flash.keep
+          redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
+        end
       end
       
-      # if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
-      #   session[:sort] = @sort
-      #   session[:ratings] = @rating_list
-      #   flash.keep
-      #   redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
-      # end
+
       
       # @movies = @movies.order(params[:sort_by])
       # if params[:sort_by] == 'title'
