@@ -14,17 +14,13 @@ class MoviesController < ApplicationController
       
       if params[:ratings]
         @rating_list = params[:ratings].keys
+      elsif session[:ratings]
+        @rating_list = session[:ratings]
       else
-        if session[:ratings]
-          @rating_list = session[:ratings]
-        else
-          @rating_list = @all_ratings
-        end
+        @rating_list = @all_ratings
       end
       
-      if @rating_list != session[:ratings]
-        session[:ratings] = @rating_list
-      end
+      session[:ratings] = @rating_list
       
       @movies = Movie.with_ratings(@rating_list)
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
@@ -38,9 +34,7 @@ class MoviesController < ApplicationController
         @sort = ''
       end
         
-      if @sort != session[:sort]
-        session[:sort] = @sort
-      end
+      session[:sort] = @sort
         
       # flash.keep
       if @sort
@@ -52,12 +46,12 @@ class MoviesController < ApplicationController
         end
       end
       
-      if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
-        session[:sort] = @sort
-        session[:ratings] = @rating_list
-        flash.keep
-        redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
-      end
+      # if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
+      #   session[:sort] = @sort
+      #   session[:ratings] = @rating_list
+      #   flash.keep
+      #   redirect_to movies_path(sort: session[:sort], ratings: session[:ratings])
+      # end
       
       # @movies = @movies.order(params[:sort_by])
       # if params[:sort_by] == 'title'
