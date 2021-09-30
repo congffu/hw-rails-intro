@@ -26,13 +26,6 @@ class MoviesController < ApplicationController
       
       @movies = Movie.with_ratings(@rating_hash.keys)
       
-      # if params[:sort]
-      #   @sort = params[:sort]
-      # elsif session[:sort]
-      #   @sort = session[:sort]
-      # else
-      #   @sort = ''
-      # end
       
       @sort = params[:sort] || session[:sort]
         
@@ -48,22 +41,10 @@ class MoviesController < ApplicationController
         end
       end
       
-      # if session[:sort] or session[:ratings]
       if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
-        # session[:sort] = @sort
-        # session[:ratings] = @rating_list
         flash.keep
         redirect_to movies_path(:sort => session[:sort], :ratings => @rating_hash)
       end
-      # end
-
-      
-      # @movies = @movies.order(params[:sort_by])
-      # if params[:sort_by] == 'title'
-      #   @title_header = 'hilite bg-warning'
-      # elsif params[:sort_by] == 'release_date'
-      #   @release_date_header = 'hilite bg-warning'
-      # end
           
     end
   
