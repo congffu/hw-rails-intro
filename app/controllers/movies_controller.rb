@@ -53,7 +53,7 @@ class MoviesController < ApplicationController
           # session[:sort] = @sort
           # session[:ratings] = @rating_list
           flash.keep
-          redirect_to movies_path(sort: session[:sort], ratings: @rating_hash)
+          redirect_to movies_path(:sort => session[:sort], :ratings => @rating_hash)
         end
       end
 
