@@ -1,7 +1,7 @@
 class Movie < ActiveRecord::Base
     def self.all_ratings
-        # Movie.all.select(:rating).distinct.pluck(:rating)
-        ['G','PG','PG-13','R']
+        Movie.all.select(:rating).distinct.pluck(:rating)
+        # ['G','PG','PG-13','R']
     end
     
     def self.with_ratings(list)
