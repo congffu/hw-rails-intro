@@ -7,7 +7,6 @@ class MoviesController < ApplicationController
     end
   
     def index
-      # session.clear
       @movies = Movie.all
       
       @all_ratings = Movie.all_ratings
@@ -15,49 +14,24 @@ class MoviesController < ApplicationController
       if params[:ratings]
         @rating_list = params[:ratings].keys
       else
-        if session[:ratings]
-          @rating_list = session[:ratings]
-        else
-          @rating_list = @all_ratings
-        end
-      end
-      
-      if @rating_list != session[:ratings]
-        session[:ratings] = @rating_list
+        @rating_list = @all_ratings
       end
       
       @movies = Movie.with_ratings(@rating_list)
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
       
       
+      
       if params[:sort_by]
-        @sort = params[:sort_by]
-      elsif session[:sort_by]
-        @sort = session[:sort_by]
-      else
-        @sort = ''
-      end
         
-      if @sort != session[:sort_by]
-        session[:sort_by] = @sort
-      end
-        
-      # flash.keep
-      if @sort
-        @movies = @movies.order(@sort)
-        if @sort == 'title'
+        @movies = @movies.order(params[:sort_by])
+        if params[:sort_by] == 'title'
           @title_header = 'hilite bg-warning'
-        elsif @sort == 'release_date'
+        elsif params[:sort_by] == 'release_date'
           @release_date_header = 'hilite bg-warning'
         end
+  
       end
-      
-      # @movies = @movies.order(params[:sort_by])
-      # if params[:sort_by] == 'title'
-      #   @title_header = 'hilite bg-warning'
-      # elsif params[:sort_by] == 'release_date'
-      #   @release_date_header = 'hilite bg-warning'
-      # end
           
     end
   
