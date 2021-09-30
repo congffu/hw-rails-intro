@@ -32,14 +32,14 @@ class MoviesController < ApplicationController
       session[:sort] = @sort
         
       # flash.keep
-      if @sort
-        @movies = @movies.order(@sort)
-        if @sort == 'title'
-          @title_header = 'hilite bg-warning'
-        elsif @sort == 'release_date'
-          @release_date_header = 'hilite bg-warning'
-        end
+      # if @sort
+      @movies = @movies.order(@sort)
+      if @sort == 'title'
+        @title_header = 'hilite bg-warning'
+      elsif @sort == 'release_date'
+        @release_date_header = 'hilite bg-warning'
       end
+      # end
       
       if params[:sort]!=session[:sort] or params[:ratings]!=session[:ratings]
         flash.keep
