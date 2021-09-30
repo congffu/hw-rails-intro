@@ -20,6 +20,7 @@ class MoviesController < ApplicationController
           @rating_list = session[:ratings]
         else
           @rating_list = @all_ratings
+          session[:ratings] = @rating_list
         end
       end
       
