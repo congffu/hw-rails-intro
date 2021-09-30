@@ -30,16 +30,16 @@ class MoviesController < ApplicationController
       @rating_hash = Hash[@rating_list.map {|rating| [rating, '1']}]
       
       
-      if params[:sort]
-        @sort = params[:sort]
-      elsif session[:sort]
-        @sort = session[:sort]
+      if params[:sort_by]
+        @sort = params[:sort_by]
+      elsif session[:sort_by]
+        @sort = session[:sort_by]
       else
         @sort = ''
       end
         
-      if @sort != session[:sort]
-        session[:sort] = @sort
+      if @sort != session[:sort_by]
+        session[:sort_by] = @sort
       end
         
       # flash.keep
