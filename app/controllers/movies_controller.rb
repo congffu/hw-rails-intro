@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
   
     def index
       # session.clear
-      @movies = Movie.all
+      # @movies = Movie.all
       
       @all_ratings = Movie.all_ratings
       
