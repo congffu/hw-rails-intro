@@ -13,17 +13,17 @@ class MoviesController < ApplicationController
       @all_ratings = Movie.all_ratings
       
       if params[:ratings]
-        @rating_list = params[:ratings]
+        @rating_hash = params[:ratings]
       elsif session[:ratings]
-        @rating_list = session[:ratings]
+        @rating_hash = session[:ratings]
       else
         @rating_list = @all_ratings
-        @rating_list = Hash[@rating_list.map {|rating| [rating, "1"]}]
+        @rating_hash = Hash[@rating_list.map {|rating| [rating, "1"]}]
       end
       
-      session[:ratings] = @rating_list
+      session[:ratings] = @rating_hash
       
-      @movies = Movie.with_ratings(@rating_list.keys)
+      @movies = Movie.with_ratings(@rating_hash.keys)
       
       # if params[:sort]
       #   @sort = params[:sort]
